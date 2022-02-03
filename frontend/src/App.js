@@ -6,8 +6,7 @@ import ChatPage from './pages/ChatPage';
 
 function App() {
   return (
-    <div className="bg-blue-300 p-4 text-center">
-      Let us connect
+    <div className="App">
       <Routes>
         <Route path="/" element={<HomePage />} exact />
         <Route path="chats" element={<ChatPage />} />
