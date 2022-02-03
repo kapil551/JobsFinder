@@ -4,6 +4,9 @@ const colors = require('colors')
 
 const userRoutes = require('./routes/userRoutes');
 
+//middleware
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+
 const { chats } = require("./data/data");
 const connectDB = require("./config/db");
 
@@ -19,12 +22,11 @@ connectDB();
 
 app.use(express.json()); // to tell the server to accept JSON data from the frontend
 
-// GET --> '/'
-app.get("/", (req, res) => {
-  res.send("API is running");
-});
-
 app.use('/api/user', userRoutes);
+
+// Error handling middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

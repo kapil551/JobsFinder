@@ -30,7 +30,7 @@ const userSchema = mongoose.Schema(
       default: false,
     },
   },
-  { timestaps: true }
+  { timestamps: true }
 );
 
 // method to match the password with the actual password
