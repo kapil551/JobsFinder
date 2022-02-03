@@ -2,9 +2,9 @@
 
 ## Tech Stack - React.js, Express.js, Node.js, MongoDB, Socket.io, Tailwind CSS
 
-Front End -> React.js
-Back End -> Express.js, Node.js
-Database -> MongoDB
+- Front End -> React.js
+- Back End -> Express.js, Node.js
+- Database -> MongoDB
 
 ## Project Data Flow:
     
