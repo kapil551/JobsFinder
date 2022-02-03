@@ -1,6 +1,6 @@
-# Chat Fata Fat - Realtime Chat Application
+# Let Us Connect - Realtime Chat Application
 
-## Tech Stack - React.js, Express.js, Node.js, MongoDB, Socket.io
+## Tech Stack - React.js, Express.js, Node.js, MongoDB, Socket.io, Tailwind CSS
 
 Front End -> React.js
 Back End -> Express.js, Node.js
