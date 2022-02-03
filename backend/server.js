@@ -3,6 +3,12 @@ const dotenv = require('dotenv');
 
 const { chats } = require("./data/data");
 
+// connect backend to frontend
+/*
+    If we try to make an API call from our frontend to backend, it is going to give us a cors error.
+    And If we want to avoid that cors error we need to provide the proxy to our fontend app.
+*/
+
 const app = express();
 dotenv.config();
 
