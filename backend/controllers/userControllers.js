@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const res = require("express/lib/response");
 const User = require('../models/userModel');
+const generateToken = require('../config/generateJsonWebToken');
 
 // @description --> Register new user
 // @route --> POST/api/user
@@ -39,6 +39,7 @@ const registerUser = asyncHandler(async(req, res) => {
             email: user.email,
             isAdmin: user.isAdmin,
             pic: user.pic,
+            token: generateToken(user._id)
         });
     } else {
         res.status(400);
