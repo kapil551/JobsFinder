@@ -2,6 +2,7 @@
 // mongoose is used to connect to the mongoDB database and make queries to the database.
 
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 
 const userSchema = mongoose.Schema(
   {
@@ -31,6 +32,24 @@ const userSchema = mongoose.Schema(
   },
   { timestaps: true }
 );
+
+// method to match the password with the actual password
+userSchema.methods.matchPassword = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+}
+
+// store the password in the database in an encrypted form
+// this will encrypt the password before storing the user to the database.
+userSchema.pre("save", async function(next) {
+
+  if (!this.isModified) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+
+});
 
 const User = mongoose.model("User", userSchema);
 

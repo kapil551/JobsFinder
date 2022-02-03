@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const generateToken = require('../config/generateJsonWebToken');
 
 // @description --> Register new user
-// @route --> POST/api/user
+// @route --> POST /api/user
 // @access --> Public
 const registerUser = asyncHandler(async(req, res) => {
 
@@ -48,4 +48,35 @@ const registerUser = asyncHandler(async(req, res) => {
 
 });
 
-module.exports = { registerUser };
+
+// @description --> Authenticate the user
+// @route --> POST /api/user/login
+// @access --> Public
+const authUser = asyncHandler(async(req, res) => {
+
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if(!user) {
+        res.status(400);
+        throw new Error("User does not exist");
+    }
+
+    if(user && (await user.matchPassword(password))) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            pic: user.pic,
+            token: generateToken(user._id),
+        });
+    } else {
+        res.status(401);
+        throw new Error("Invalid Email or Password");
+    }
+
+});
+
+module.exports = { registerUser, authUser };
