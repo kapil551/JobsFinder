@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const colors = require('colors')
 
 const userRoutes = require('./routes/userRoutes');
+const chatRoutes = require("./routes/chatRoutes");
 
 //middleware
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
@@ -23,6 +24,7 @@ connectDB();
 app.use(express.json()); // to tell the server to accept JSON data from the frontend
 
 app.use('/api/user', userRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Error handling middlewares
 app.use(notFound);
