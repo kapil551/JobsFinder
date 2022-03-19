@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter } from "react-router-dom";
+import ChatProvider from './Context/ChatProvider';
 
 const theme = extendTheme({
   colors: {
@@ -17,13 +18,13 @@ const theme = extendTheme({
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ChakraProvider theme={theme}>
     <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <App />
-      </ChakraProvider>
+      <ChatProvider>
+          <App />
+      </ChatProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+  </ChakraProvider>,
   document.getElementById('root')
 );
 

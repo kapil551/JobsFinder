@@ -7,15 +7,25 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Login from "../components/Authentication/Login";
 import SignUp from "../components/Authentication/SignUp";
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user) navigate("/chats");
+  }, [navigate]);
+
   return (
     <>
       <div className="min-w-screen min-h-screen bg-white flex">
-        <Container>
+        <Container className="">
           <Box className="bg-gray-100 my-4 p-4">
             <Tabs variant="soft-rounded">
               <TabList className="mb-1">
