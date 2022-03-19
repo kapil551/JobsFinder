@@ -134,7 +134,7 @@ import {
           <ModalOverlay />
           <ModalContent>
             <ModalHeader
-              fontSize="35px"
+              fontSize="33px"
               fontFamily="Work sans"
               d="flex"
               justifyContent="center"

@@ -24,9 +24,15 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="min-w-screen min-h-screen bg-white flex">
+      <div className="min-w-screen min-h-screen bg-white sm:flex items-center justify-center">
+      <Container
+          maxW="92%"
+          className="bg-[#6749DC] text-white text-center text-3xl sm:hidden flex items-center justify-center h-[4rem] sm:h-screen sm:rounded-none rounded-md mt-3"
+      >
+          Let us connect 
+        </Container>
         <Container className="">
-          <Box className="bg-gray-100 my-4 p-4">
+          <Box className="bg-gray-100 my-4 p-4 sm:rounded-none rounded-md">
             <Tabs variant="soft-rounded">
               <TabList className="mb-1">
                 <Tab className="w-1/2">Login</Tab>
@@ -44,8 +50,8 @@ const HomePage = () => {
           </Box>
         </Container>
         <Container
-          maxW=""
-          className="bg-[#6749DC] text-white text-center text-4xl flex items-center justify-center"
+          maxW="92%"
+          className="bg-[#6749DC] text-white text-center text-4xl hidden sm:flex items-center justify-center h-[16rem] sm:h-screen sm:rounded-none rounded-md"
         >
           Let us connect
         </Container>
