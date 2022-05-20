@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require('../models/userModel');
+const Admin = require('../models/AdminModel');
 const generateToken = require('../config/generateJsonWebToken');
 
 //@description --> Get or Search all users
@@ -40,28 +41,54 @@ const registerUser = asyncHandler(async(req, res) => {
         throw new Error("User already exists");
     }
 
-    // otherwise --> create a new user
-    const user = await User.create({
-        name,
-        email,
-        password,
-        pic,
-    });
-
-    // if the user is created successfully
-    if(user) {
-        res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            pic: user.pic,
-            token: generateToken(user._id)
+    if(name === "Admin" || email === "admin@gmail.com") {
+        // store the admin in the database
+        const admin = await Admin.create({
+            name,
+            email,
+            password,
+            pic,
         });
+    
+        // if the admin is created successfully
+        if(admin) {
+            res.status(201).json({
+                _id: admin._id,
+                name: admin.name,
+                email: admin.email,
+                pic: admin.pic,
+                token: generateToken(admin._id)
+            });
+        } else {
+            res.status(400);
+            throw new Error("Failed to add the admin");
+        }
     } else {
-        res.status(400);
-        throw new Error("Failed to create a new user");
+
+        // otherwise --> create a new user
+        const user = await User.create({
+            name,
+            email,
+            password,
+            pic,
+        });
+    
+        // if the user is created successfully
+        if(user) {
+            res.status(201).json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                pic: user.pic,
+                token: generateToken(user._id)
+            });
+        } else {
+            res.status(400);
+            throw new Error("Failed to create a new user");
+        }
     }
+
 
 });
 
@@ -74,8 +101,9 @@ const authUser = asyncHandler(async(req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+    const admin = await Admin.findOne({ email });
 
-    if(!user) {
+    if(!user && !admin) {
         res.status(400);
         throw new Error("User does not exist");
     }
@@ -88,6 +116,14 @@ const authUser = asyncHandler(async(req, res) => {
             isAdmin: user.isAdmin,
             pic: user.pic,
             token: generateToken(user._id),
+        });
+    } else if(admin && (await admin.matchPassword(password))) {
+        res.json({
+            _id: admin._id,
+            name: admin.name,
+            email: admin.email,
+            pic: admin.pic,
+            token: generateToken(admin._id),
         });
     } else {
         res.status(401);

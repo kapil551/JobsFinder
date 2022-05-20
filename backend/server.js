@@ -1,17 +1,20 @@
 const express = require("express");
-const dotenv = require('dotenv');
-const colors = require('colors')
-
-const userRoutes = require('./routes/userRoutes');
-const chatRoutes = require("./routes/chatRoutes");
-const messageRoutes = require("./routes/messageRoutes");
+const dotenv = require("dotenv");
+const colors = require("colors");
 const path = require("path");
 
+const userRoutes = require("./routes/userRoutes");
+const chatRoutes = require("./routes/chatRoutes");
+const messageRoutes = require("./routes/messageRoutes");
+const jobsRoutes = require("./routes/jobsRoutes");
+const resourcesRoutes = require("./routes/resourcesRoutes");
+
 //middleware
-const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const { chats } = require("./data/data");
 const connectDB = require("./config/db");
+const ACTIONS = require("../frontend/src/Actions");
 
 // connect backend to frontend
 /*
@@ -25,9 +28,11 @@ connectDB();
 
 app.use(express.json()); // to tell the server to accept JSON data from the frontend
 
-app.use('/api/user', userRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
+app.use("/api", jobsRoutes);
+app.use("/api/resources", resourcesRoutes);
 
 // --------------------------deployment------------------------------
 
@@ -64,6 +69,19 @@ const io = require("socket.io")(server, {
   },
 });
 
+const userSocketMap = {};
+function getAllConnectedClients(roomId) {
+    // Map
+    return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(
+        (socketId) => {
+            return {
+                socketId,
+                username: userSocketMap[socketId],
+            };
+        }
+    );
+}
+
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
   socket.on("setup", (userData) => {
@@ -89,6 +107,42 @@ io.on("connection", (socket) => {
       socket.in(user._id).emit("message recieved", newMessageRecieved);
     });
   });
+
+  // Code Collaboration Sockets
+  socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
+    userSocketMap[socket.id] = username;
+    socket.join(roomId);
+    const clients = getAllConnectedClients(roomId);
+    // console.log("clients", clients);
+    clients.forEach(({ socketId }) => {
+      io.to(socketId).emit(ACTIONS.JOINED, {
+        clients,
+        username,
+        socketId: socket.id,
+      });
+    });
+  });
+
+  socket.on(ACTIONS.CODE_CHANGE, ({ roomId, code }) => {
+    socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code });
+  });
+
+  socket.on(ACTIONS.SYNC_CODE, ({ socketId, code }) => {
+    io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
+  });
+
+  socket.on("disconnecting", () => {
+    const rooms = [...socket.rooms];
+    rooms.forEach((roomId) => {
+      socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
+        socketId: socket.id,
+        username: userSocketMap[socket.id],
+      });
+    });
+    delete userSocketMap[socket.id];
+    socket.leave();
+  });
+  // Code Collaboration Sockets
 
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");

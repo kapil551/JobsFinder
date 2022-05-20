@@ -141,8 +141,8 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="xl" fontFamily="Work sans">
-          Let Us Connect
+        <Text fontSize="xl" fontFamily="Work sans" fontWeight='bold'>
+          JobsFinder
         </Text>
         <div>
           <Menu>

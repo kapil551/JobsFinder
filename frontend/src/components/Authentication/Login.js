@@ -58,7 +58,11 @@ const Login = () => {
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chats"); // navigate to the '/chats' page
+      if(email === "admin@gmail.com") {
+        window.location = `/addjob`;
+      } else {
+        window.location = `/chats`; // navigate to the '/chats' page
+      }
       
     } catch (error) {
       toast({

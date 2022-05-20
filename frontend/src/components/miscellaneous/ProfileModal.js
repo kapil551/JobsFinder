@@ -1,4 +1,4 @@
-import { ViewIcon } from "@chakra-ui/icons";
+import { ViewIcon, ArrowUpDownIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -13,16 +13,20 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const reactNavigator = useNavigate(); 
 
   return (
     <>
       {children ? (
         <span onClick={onOpen}>{children}</span>
       ) : (
-        <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+        <> 
+          <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+        </>
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
@@ -55,9 +59,9 @@ const ProfileModal = ({ user, children }) => {
               Email: {user.email}
             </Text>
           </ModalBody>
-          <ModalFooter>
+          {/* <ModalFooter>
             <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
+          </ModalFooter> */}
         </ModalContent>
       </Modal>
     </>

@@ -181,9 +181,9 @@ import {
                   ))
               )}
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter position='unset'>
               <Button onClick={handleSubmit} colorScheme="blue">
-                Create Chat
+                Create Group
               </Button>
             </ModalFooter>
           </ModalContent>

@@ -29,7 +29,7 @@ const HomePage = () => {
           maxW="92%"
           className="bg-[#6749DC] text-white text-center text-3xl sm:hidden flex items-center justify-center h-[4rem] sm:h-screen sm:rounded-none rounded-md mt-3"
       >
-          Let us connect 
+          JobsFinder 
         </Container>
         <Container className="">
           <Box className="bg-gray-100 my-4 p-4 sm:rounded-none rounded-md">
@@ -53,7 +53,7 @@ const HomePage = () => {
           maxW="92%"
           className="bg-[#6749DC] text-white text-center text-4xl hidden sm:flex items-center justify-center h-[16rem] sm:h-screen sm:rounded-none rounded-md"
         >
-          Let us connect
+          JobsFinder
         </Container>
       </div>
     </>
