@@ -13,10 +13,21 @@
 - MongoDB, Moongose 
 - Socket.io
 - Tailwind CSS
-## Project Features:
-
 ## Project Screenshots:
 
 ![](./frontend/public/images/Login_SignUp.PNG)
 
 ### User Module:
+
+![](./frontend/public/images/Collaboration.PNG)
+![](./frontend/public/images/Jobs.PNG)
+![](./frontend/public/images/Resources.PNG)
+![](./frontend/public/images/CodeRoom.PNG)
+![](./frontend/public/images/LiveCoding.PNG)
+
+### Admin Module:
+
+![](./frontend/public/images/AdminNewJob.PNG)
+![](./frontend/public/images/AdminAddedJobs.PNG)
+![](./frontend/public/images/AdminNewResource.PNG)
+![](./frontend/public/images/AdminAddedResources.PNG)
