@@ -15,7 +15,7 @@
 - Tailwind CSS
 ## Project Screenshots:
 
-![](./frontend/public/images/Login_SignUp.PNG | width=200)
+![](./frontend/public/images/Login_SignUp.PNG)
 
 ### User Module:
 
