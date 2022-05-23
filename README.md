@@ -17,6 +17,6 @@
 
 ## Project Screenshots:
 
-![]('./frontend/public/images/Login_SignUp.PNG')
+![](./frontend/public/images/Login_SignUp.PNG)
 
 ### User Module:
