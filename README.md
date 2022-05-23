@@ -15,19 +15,19 @@
 - Tailwind CSS
 ## Project Screenshots:
 
-![](./frontend/public/images/Login_SignUp.PNG)
+<img src="./frontend/public/images/Login_SignUp.PNG" width="400" />
 
 ### User Module:
 
-![](./frontend/public/images/Collaboration.PNG)
-![](./frontend/public/images/Jobs.PNG)
-![](./frontend/public/images/Resources.PNG)
-![](./frontend/public/images/CodeRoom.PNG)
-![](./frontend/public/images/LiveCoding.PNG)
+<img src="./frontend/public/images/Collaboration.PNG" width="400" /> 
+<img src="./frontend/public/images/Jobs.PNG" width="400" />
+<img src="./frontend/public/images/Resources.PNG" width="400" />
+<img src="./frontend/public/images/LiveCoding.PNG" width="400" />
+<img src="./frontend/public/images/CodeRoom.PNG" width="400" height="329" />
 
 ### Admin Module:
 
-![](./frontend/public/images/AdminNewJob.PNG)
-![](./frontend/public/images/AdminAddedJobs.PNG)
-![](./frontend/public/images/AdminNewResource.PNG)
-![](./frontend/public/images/AdminAddedResources.PNG)
+<img src="./frontend/public/images/AdminNewJob.PNG" width="400" />
+<img src="./frontend/public/images/AdminAddedJobs.PNG" width="400" />
+<img src="./frontend/public/images/AdminNewResource.PNG" width="400" />
+<img src="./frontend/public/images/AdminAddedResources.PNG" width="400" />
