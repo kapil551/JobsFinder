@@ -1,32 +1,22 @@
-# Let Us Connect - Realtime Chat Application
+# JobsFinder - Single platform for jobs, chats, interview prep & more
 
-- Let-Us-Connect is a full-stack real-time chatting app.
-- It uses socket.io for real-time communication and one on one messaging.
+- This is a community, jobs search, collaboration & interview preparation platform.
+- This is a full-stack end-to-end app providing one stop solution for job seekers.
+- It uses socket.io for real-time communication, one on one messaging and live coding sessions.
 - Stores the user's details in encrypted format in the MongoDB database.
 - JWT with token expiry for user authentication.
 
 ## Tech Stack
 
-- React.js, Chakra UI 
+- React.js, Chakra UI, Material UI
 - Express.js, Node.js 
 - MongoDB, Moongose 
 - Socket.io
 - Tailwind CSS
-## Project Data Flow:
 ## Project Features:
 
-- Realtime chatting with typing indicators.
-- One on One chatting feature.
-- Search Users.
-- Create and delete Group Chats.
-- Realtime Notifications for new messages.
-- Add or Remove users from groups.
-- Group admin features.
-- View other user's profile.
-- Create/Update your profile.
-
-## Extra Features:
-
-- Adding and Storing Notes.
-
 ## Project Screenshots:
+
+![]('./frontend/public/images/Login_SignUp.PNG')
+
+### User Module:
